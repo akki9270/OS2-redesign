@@ -1,0 +1,43 @@
+trigger:  
+  branches:    
+    include:      
+      - demo
+pr: none
+stages:
+- stage: Docker
+  displayName: Build, push and deploy the docker container to EKS
+  jobs:
+  - job: Build_and_Push
+    displayName: Build & Push Docker image
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        command: build
+        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        buildContext: '$(Build.SourcesDirectory)'
+        repository: $(docker_repository_name)
+
+    - task: ECRPushImage@1
+      inputs:
+        awsCredentials: '$(aws_credentials)'
+        regionName: $(aws_region)
+        imageSource: 'imagename'
+        sourceImageName: $(docker_repository_name)
+        sourceImageTag: $(Build.BuildId)
+        pushTag: latest
+        repositoryName: $(docker_repository_name)
+        autoCreateRepository: true
+    - task: AWSShellScript@1
+      inputs:
+        awsCredentials: '$(aws_credentials)'
+        regionName: '$(aws_region)'
+        scriptType: 'inline'
+        inlineScript: |
+          aws eks --region $(aws_region) update-kubeconfig --name $(eks_cluster_name)
+          curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl
+          kubectl apply -f $(k8s_file_path)
+          kubectl rollout restart deployment $(deployment_name)
+          

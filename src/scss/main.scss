@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+
+
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+$font-stack: 'Quicksand', sans-serif;
+$black: #000000;
+$blue:#0B5DA4;
+$grey: #78828E;
+$white:#ffffff;
+$border-color:#DCDFE1;        
+$text-color:#131313;
+
+
+body {
+  font: 20px $font-stack;
+  font-weight: 500;
+  color: $black;
+  background-color: #f3f4f7 !important;
+  margin: 0;
+}
+#root{
+  background-color: #f3f4f7 !important;
+  height: auto !important;
+} 
+

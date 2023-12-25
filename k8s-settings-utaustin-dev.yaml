@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-ui
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: dev-ui
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: dev-ui
+        image: 224142026510.dkr.ecr.us-east-2.amazonaws.com/dev-ui:latest
+        ports:
+        - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-ui
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 3000
+  selector:
+    app: dev-ui

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoui-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demoui-demo
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: demoui-demo
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: demoui-demo
+        image: 251976675897.dkr.ecr.us-east-2.amazonaws.com/demoui-demo:latest
+        ports:
+        - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demoui-demo
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 3000
+  selector:
+    app: demoui-demo

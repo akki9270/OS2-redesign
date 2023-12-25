@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1,
+    "name": "Project1",
+    "contract": "Contract 1",
+    "contracts": [
+      {
+        "id": 21,
+        "name": "Project1",
+        "contract": "Contract 1-1",
+        "contracts": [
+          {
+            "id": 32,
+            "name": "Project1",
+            "contract": "Contract 1-1-1"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Project1",
+        "contract": "Contract 1-2",
+        "contracts": [
+          {
+            "id": 25,
+            "name": "Project1",
+            "contract": "Contract 1-2-1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Project2",
+    "contract": "Contract 2",
+    "contracts": [
+      {
+        "id": 12,
+        "name": "Project2",
+        "contract": "Contract 2-1",
+        "contracts": [
+          {
+            "id": 23,
+            "name": "Project1",
+            "contract": "Contract 2-1-1"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Project2",
+        "contract": "Contract 2-2",
+        "contracts": [
+          {
+            "id": 25,
+            "name": "Project2",
+            "contract": "Contract 2-2-1"
+          }
+        ]
+      }
+    ]
+  }
+]

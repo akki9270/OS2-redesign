@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "outDir": "./build/",
+    "sourceMap": false,
+    "strict": true,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "noImplicitReturns": true,
+    "noImplicitAny": false,
+    "module": "es6",
+    "moduleResolution": "node",
+    "target": "es6",
+    "allowJs": true,
+    "jsx": "react",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "types": [
+      "node",
+      "jest"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "./src/**/*",
+    "./specs/**/*"
+  ],
+  "files": [
+    "src/index.tsx"
+  ]
+}

@@ -1,0 +1,238 @@
+@import '../../scss/main.scss';
+
+@import '../../scss/mixins.scss';
+
+.project-dashboard {
+	margin: 130px 30px 30px 286px;
+	width: calc(100% - 316px);
+	height: calc(100% - 130px);
+	background-color: $white;
+	border-radius: 8px;
+	@include border-radius(8px);
+    box-shadow: 0px 4px 19.899999618530273px 0px #00000021;
+}
+
+.project-dashboard .grid-container {
+	width: 100% !important;
+	margin-left: 0 !important;
+	margin-top: 0 !important;
+}
+
+.project-dashboard .grid-item {
+	background: #F3F4F7;
+	@include border-radius(8px);
+    padding: 10px;
+	margin: 5px;
+	text-align: right;
+	@include flex-basis(calc(25% - 15px));
+}
+
+.project-dashboard .project-name {
+	color: $text-color;
+	font-size: 14px;
+	text-align: left;
+	margin-top: 50px;
+}
+
+.project-dashboard .risk-txt {
+	font-size: 10px;
+	color: #757575;
+	text-align: left;
+	margin-bottom: 4px !important;
+}
+
+.project-dashboard .status {
+	font-size: 12px;
+	color: $blue;
+	border: 1px solid $blue;
+	@include border-radius(4px);
+    padding: 0 24px 0 12px;
+	line-height: 12px;
+	position: relative;
+}
+
+.project-dashboard .status::after {
+	content: "";
+	width: 6px;
+	height: 6px;
+	background-color: $blue;
+	position: absolute;
+	@include transform(translateY(-50%));
+top: 50%;
+	right: 12px;
+	@include border-radius(50%);
+}
+
+.project-dashboard  .progress-bar {
+	@include flex-container(row);
+}
+
+.project-dashboard  .progress-bar-item {
+	flex: 1;
+	height: 9.3px;
+}
+
+.project-dashboard .progress-bar-item {
+	background-color: #DDDDDD !important;
+}
+
+.project-dashboard .progress-bar-item span {
+	background-color: $blue !important;
+}
+
+.project-dashboard  .progress-bar-item:first-child {
+	@include border-left-radius(10px);
+        margin-right: 3px;
+}
+
+.project-dashboard  .progress-bar-item:last-child {
+	@include border-right-radius(10px);
+        margin-left: 3px;
+}
+
+.grid-container .grid-item:nth-child(4n + 1) {
+	margin-left: 10px;
+}
+
+#dashboard-header {
+	border-bottom: 1px solid $border-color;
+	padding: 10px 15px;
+	@include flex-container(row,space-between);
+        margin-bottom: 10px;
+}
+
+#dashboard-header #title {
+	color: $blue;
+	font-size: 16px;
+	margin-bottom: 15px;
+}
+
+#dashboard-header .number {
+	color: $blue;
+	font-size: 16px;
+	line-height: 1;
+}
+
+#dashboard-header .txt {
+	color: #292929;
+	font-size: 12px;
+	position: relative;
+}
+
+#dashboard-header .status-item:first-child .txt::after,
+#dashboard-header .status-item:nth-child(2) .txt::after {
+	content: "";
+	width: 6px;
+	height: 6px;
+	background-color: #292929;
+	position: absolute;
+	@include transform(translateY(-50%));
+    top: 50%;
+	right: -10px;
+	@include border-radius(50%);
+}
+
+#dashboard-header .status-item:nth-child(2) .txt::after {
+	background-color: transparent;
+	border: 1px solid #292929;
+}
+
+#dashboard-header #status-wrap {
+	@include flex-container(row);
+}
+
+#dashboard-header .status-item {
+	@include flex-container(column);
+        margin-right: 35px;
+}
+
+#icon-wrap span {
+	margin-right: 20px;
+}
+
+#bottom-wrap #btn {
+	font-size: 12px;
+	line-height: 15.62px;
+	background-color: $blue;
+	color: $white;
+	@include border-right-radius(4px);
+    text-transform: none !important;
+	padding: 8px 16px;
+}
+
+#bottom-wrap {
+	padding: 40px 25px 15px 10px;
+	@include flex-container(row,space-between);
+}
+
+#bottom-wrap #pagination ul {
+	border: 1px solid $border-color;
+	@include border-radius(4px);
+}
+
+#bottom-wrap #pagination ul li button {
+	@include border-radius(0);
+    margin: 0;
+	border-right: 1px solid $border-color;
+	font-size: 12px;
+}
+
+#bottom-wrap #pagination ul li:last-child button {
+	border-right: none;
+}
+//list css
+#list-container {
+	padding: 0 !important;
+	margin-top: -10px;
+}
+
+#list-container li {
+	border-bottom: 1px solid $border-color;
+	padding: 20px 40px;
+}
+
+#list-container li .list-content {
+	@include flex-container(row,space-between,center);
+width: 100%;
+}
+
+#list-container .project-name {
+	margin-top: 0;
+	margin-bottom: 0;
+	flex-basis: 30%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#list-container .status {
+	padding: 8px 32px 8px 16px;
+}
+
+#list-container .view-contract {
+	font-size: 12px;
+	color: #9B9B9B;
+}
+
+#list-container .view-contract svg {
+	width: 12px;
+	height: auto;
+	margin-right: 5px;
+}
+
+#list-container .risk-wrap {
+	flex-basis: 30%;
+}
+
+#icon-wrap {
+	.icon-active{
+            background-color: $blue;
+	        @include border-radius(4px);
+            padding: 3px;
+	        height: 24px;
+	        width: 24px;
+	        path {
+                  stroke: $white !important;
+            }
+        }
+    }

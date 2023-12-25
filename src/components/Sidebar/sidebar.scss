@@ -1,0 +1,108 @@
+@import '../../scss/main.scss';
+
+@import '../../scss/mixins.scss';
+
+.listitem-icons {
+	min-width: 30px !important;
+}
+
+.sidebar .css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+	width: 256px !important;
+	padding: 0 20px;
+}
+
+.sidebar ul li span,
+.sidebar ul a span {
+	color: $grey !important;
+	font-size: 12px !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-wrap: nowrap;
+}
+
+.sidebar ul li {
+	cursor: pointer;
+}
+
+.sidebar ul a.active,
+.sidebar ul li.active {
+	background-color: #E3F0FD;
+	@include border-radius(4px);
+}
+
+.sidebar ul li span svg,
+.sidebar ul a span svg {
+	right: 0;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.sidebar ul.title li {
+	padding-left: 10px;
+	padding-bottom: 0;
+	cursor: auto;
+}
+
+.sidebar ul a.active span,
+.sidebar ul li.active span {
+	color: $blue !important;
+	font-weight: 700;
+}
+
+.list-dropdown span {
+	color: $grey !important;
+	font-size: 12px !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-wrap: nowrap;
+}
+
+.list-dropdown li {
+	padding: 4px 16px !important;
+}
+
+.sidebar {
+	.list-container {
+		ul {
+			.active {
+				svg {
+					path {
+						stroke: $blue !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+.sidebar {
+	.list-container {
+		ul {
+			.active {
+
+				svg.riskassessvg,
+				svg.riskidensvg {
+					path {
+						stroke: inherit !important;
+						fill: $blue !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+.sidebar {
+	.list-container {
+		ul {
+			.active {
+				svg.riskidensvg {
+					path: nth-child(2) {
+						stroke: $white !important;
+					}
+				}
+			}
+		}
+	}
+}

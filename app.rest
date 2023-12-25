@@ -1,0 +1,7 @@
+@PROTECTED_REMOTE_URL= http://ac573a11a6b784f8786fcacaef924f0a-1923994768.us-east-2.elb.amazonaws.com:8080/api/v1
+@PROTECTED_LOCAL_URL= http://localhost:8080/api/v1
+@BEARER_TOKEN= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6Im93bmVyMSIsIldhbGxldElkIjoiZTI3ZTY3NmItODdkNi00ZmRiLWI1MzMtZGY0YmMwNmIyNDk4IiwiVXNlclR5cGUiOiJvd25lcnMudXRhdXN0aW4uY29tIiwiRXhwaXJ5VGltZSI6IjIwMjEtMTEtMjZUMjA6NDM6MDUuMDM5NTM4KzA1OjMwIiwiZXhwIjoxNjM3OTM5NTg1fQ.EI40Vb9dXqGgNHOQVwz4OOsc1C-c4w9bnb7X580ucyw
+### Get Wallets
+GET {{PROTECTED_LOCAL_URL}}/wallet/list
+Content-Type: application/json
+Authorization: Bearer {{BEARER_TOKEN}}

@@ -1,0 +1,140 @@
+[
+  {
+    "id": 1,
+    "name": "Project1",
+    "current_version": "1",
+    "activities": ["activity 1", "activity 2"],
+    "scopes": ["scope1", "scope2"],
+    "selectedFile": "sample.pdf",
+    "description": "test",
+    "projects": [
+      {
+        "id": 21,
+        "name": "Proj1_Subproject1",
+        "current_version": "1_1",
+        "activities": ["activity 1", "activity 2"],
+        "scopes": ["scope1", "scope2"],
+        "selectedFile": "sample.pdf",
+        "description": "test",
+        "projects": [
+          {
+            "id": 32,
+            "name": "Proj1_Subproj1_SubSubProj1",
+            "current_version": "1_1_1",
+            "activities": ["activity 1", "activity 2"],
+            "scopes": ["scope", "scope2"],
+            "selectedFile": "sample.pdf",
+            "description": "test"
+          },
+          {
+            "id": 52,
+            "name": "Proj1_Subproj1_SubSubProj2",
+            "current_version": "1_1_2",
+            "activities": ["activity 1", "activity 2"],
+            "scopes": ["scope1", "scope2"],
+            "selectedFile": "sample.pdf",
+            "description": "test"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Proj1_Subproject2",
+        "current_version": "1_2",
+        "activities": ["activity 1", "activity 2"],
+        "scopes": ["scope1", "scope2"],
+        "selectedFile": "sample.pdf",
+        "description": "test",
+        "projects": [
+          {
+            "id": 25,
+            "name": "Proj1_Subproj2_SubSubProj1",
+            "current_version": "1_2_1",
+            "activities": ["activity 1", "activity 2"],
+            "scopes": ["scope1", "scope2"],
+            "selectedFile": "sample.pdf",
+            "description": "test"
+          },
+          {
+            "id": 78,
+            "name": "Proj1_Subproj2_SubSubProj2",
+            "current_version": "1_2_2",
+            "activities": ["activity 1", "activity 2"],
+            "scopes": ["scope1", "scope2"],
+            "selectedFile": "sample.pdf",
+            "description": "test"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Project2",
+    "current_version": "2",
+    "activities": ["activity 1", "activity 2"],
+    "scopes": ["scope1", "scope2"],
+    "selectedFile": "sample.pdf",
+    "description": "test",
+    "projects": [
+      {
+        "id": 12,
+        "name": "Proj2_Subproject1",
+        "current_version": "1_1",
+        "activities": ["activity 1", "activity 2"],
+        "scopes": ["scope1", "scope2"],
+        "selectedFile": "sample.pdf",
+        "description": "test",
+        "projects": [
+          {
+            "id": 23,
+            "name": "Proj2_Subproj1_SubSubProj1",
+            "current_version": "1_1_1",
+            "activities": ["activity 1", "activity 2"],
+            "scopes": ["scope1", "scope2"],
+            "selectedFile": "sample.pdf",
+            "description": "test"
+          },
+          {
+            "id": 28,
+            "name": "Proj2_Subproj1_SubSubProj2",
+            "current_version": "1_1_2",
+            "activities": ["activity 1", "activity 2"],
+            "scopes": ["scope1", "scope2"],
+            "selectedFile": "sample.pdf",
+            "description": "test"
+          }
+        ]
+      },
+      {
+        "id": 40,
+        "name": "Proj2_Subproject2",
+        "current_version": "1_2",
+        "activities": ["activity 1", "activity 2"],
+        "scopes": ["scope1", "scope2"],
+        "selectedFile": "sample.pdf",
+        "description": "test",
+        "projects": [
+          {
+            "id": 12,
+            "name": "Proj2_Subproj2_SubSubProj1",
+            "current_version": "1_2_1",
+            "activities": ["activity 1", "activity 2"],
+            "scopes": ["scope1", "scope2"],
+            "selectedFile": "sample.pdf",
+            "description": "test"
+          },
+          {
+            "id": 10,
+            "name": "Proj2_Subproj2_SubSubProj2",
+            "current_version": "1_2_2",
+            "activities": ["activity 1", "activity 2"],
+            "scopes": ["scope1", "scope2"],
+            "selectedFile": "sample.pdf",
+            "description": "test"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,91 @@
+@import '../../scss/main.scss';
+
+@import '../../scss/mixins.scss';
+
+#header-wrap,#header-container {
+	height: 100px;
+	background-color: $white;
+}
+
+#header-wrap {
+	box-shadow: none !important;
+	border: 1px solid $border-color;
+}
+
+#header-container {
+	padding-left: 300px !important;
+	padding-right: 100px !important;
+	justify-content: space-between;
+}
+
+.search-bar input {
+	width: 350px !important;
+	color: $grey !important;
+	font-size: 12px;
+	//border: 1px solid $border-color;
+}
+
+.search-bar fieldset {
+	top: 0 !important;
+	border: 1px solid $border-color !important;
+}
+
+.search-bar legend {
+	display: none !important;
+}
+
+.search-bar label {
+	display: none;
+}
+
+.search-bar button {
+	padding-left: 0;
+}
+
+.search-bar input::placeholder,
+.search-bar input:focus,
+.search-bar input:active,
+.search-bar input:hover {
+	color: $grey;
+	font-size: 12px;
+}
+
+.month-text,.day-text {
+	font-size: 12px !important;
+	color: $grey !important;
+}
+
+.month-text {
+	color: $blue !important;
+}
+
+.right-top-nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.date-wrap {
+	text-align: right;
+	border-right: 1px solid $border-color;
+	padding-right: 20px;
+	margin-right: 20px;
+}
+
+.user-account {
+	font-size: 12px !important;
+	color: $grey !important;
+	text-transform: unset !important;
+}
+
+.user-account:hover {
+	background-color: transparent !important;
+}
+
+.user-icon {
+	font-size: 34px !important;
+}
+
+.noti-icon {
+	padding: 0 30px;
+}
