@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router"
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useLocation, Navigate, Link as RouterLink } from "react-router-dom";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -10,14 +11,16 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Link as RouterLink } from "react-router-dom";
+
 // import { useAuth } from "../hooks/useAuth";
 import { AUTH_ACTIONS } from "../../store/auth/actions";
 
 const Login = () => {
   //   const { login } = useAuth();
+  const isAuthenticated = useSelector((store: any) => store.auth.isAuthenticated);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
+  const { state } = useLocation();
   const [inputs, setInput] = useState({ email: "", password: "" });
 
   const inputChange = (e: any) => {
@@ -29,13 +32,18 @@ const Login = () => {
 
     if (!inputs.email || !inputs.password) return;
     dispatch({ type: AUTH_ACTIONS.LOGIN_USER });
-    history.push("/");
+    navigate(state?.path || "/");
+    // history.push("/");
     // const data = new FormData(event.currentTarget);
     // login({
     //   email: data.get("email"),
     //   password: data.get("password")
     // });    
   };
+
+  if (isAuthenticated) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -86,11 +94,11 @@ const Login = () => {
           </Button>
           <Grid container>
             <Grid item>
-              {/* <RouterLink to="/register"> */}
-              <Link onClick={() => { }} variant="body2" >
-                {"Don't have an account? Sign Up"}
-              </Link>
-              {/* </RouterLink> */}
+              <RouterLink to="/register">
+                <Link onClick={() => { }} variant="body2" >
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </RouterLink>
             </Grid>
           </Grid>
         </Box>

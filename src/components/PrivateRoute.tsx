@@ -1,17 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import { Navigate, useLocation, Outlet } from 'react-router-dom';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const isAuthenticated = useSelector((store:any) => store.auth.isAuthenticated);
+const PrivateRoute:any = () => {
+  const isAuthenticated = useSelector((store: any) => store.auth.isAuthenticated);
+  const location = useLocation();
   return (
-    <Route
-      {...rest}
-      render = {(props) => 
-        isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />
-      }
-    />
-  );  
+    isAuthenticated ? <Outlet /> : <Navigate to="/login" replace state={{ path: location.pathname }} />
+  );
 };
 
 export default PrivateRoute;

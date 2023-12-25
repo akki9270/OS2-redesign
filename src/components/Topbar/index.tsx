@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
 import Toolbar from '@mui/material/Toolbar';
@@ -8,26 +8,32 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
-import SearchIcon from '../../../static/icons/search.png';
-import { AUTH_ACTIONS } from '../../store/auth/actions';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
-import "./topbar.scss";
+import SearchIcon from '../../../static/icons/search.png';
 import SvgIcons from '../SvgIcons';
+
+import { AUTH_ACTIONS } from '../../store/auth/actions';
+
+import "./topbar.scss";
+
 const Topbar = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [searchText, setSearchText] = useState('');
 
   const handleSearchChange = (event) => {
     setSearchText(event.target.value);
   };
+
   const logoutUser = () => {
     dispatch({ type: AUTH_ACTIONS.LOGOUT_USER });
-    history.push("/login");
+    navigate("/login");
   };
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenuOpen = (event) => {
