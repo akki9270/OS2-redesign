@@ -12,38 +12,68 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-// import { useAuth } from "../hooks/useAuth";
+import Toast from '../../components/Toast';
+import { Login as LoginModel } from '../../models';
+import { LoginAPI } from '../../services';
+
 import { AUTH_ACTIONS } from "../../store/auth/actions";
+import CustomSnackbar from "../../components/SnackBar/Snackbar";
 
 const Login = () => {
-  //   const { login } = useAuth();
-  const isAuthenticated = useSelector((store: any) => store.auth.isAuthenticated);
+  const isAuthenticated = useSelector((store: any) => store.auth.auth?.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [inputs, setInput] = useState({ email: "", password: "" });
 
-  const inputChange = (e: any) => {
-    setInput({ ...inputs, [e.target.name]: e.target.value });
-  }
-
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-
-    if (!inputs.email || !inputs.password) return;
-    dispatch({ type: AUTH_ACTIONS.LOGIN_USER });
-    navigate(state?.path || "/");
-    // history.push("/");
-    // const data = new FormData(event.currentTarget);
-    // login({
-    //   email: data.get("email"),
-    //   password: data.get("password")
-    // });    
-  };
+  const [loginState, setLoginState] = useState<LoginModel>({
+    username: '',
+    password: ''
+  });
 
   if (isAuthenticated) {
     return <Navigate to="/" />;
   }
+
+  const inputChange = (e: any) => {
+    const value = e.target.value;
+    setLoginState({
+      ...loginState,
+      [e.target.name]: value
+    });
+  }
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    if (!loginState.username || !loginState.password) return;
+
+    const login: LoginModel = { ...loginState };
+    LoginAPI.createLogin(login)
+      .then((res) => {
+        if (res?.name) {
+          // const updatedUser: any = {
+          //   userName: loginState.username,
+          //   walletId: 0,
+          //   userType: 'owner',
+          //   token: res.Value
+          // };
+          // dispatch({ type: 'UPDATE_CURRENT_ACCOUNT', data: updatedUser });
+          dispatch({ type: AUTH_ACTIONS.LOGIN_USER, data: res });
+          setLoginState({
+            username: '',
+            password: ''
+          });
+          Toast({ title: '', message: 'Login Successfully!', type: 'success' });                    
+          navigate(state?.path || "/");
+        }
+      })
+      .catch((error) => {
+        console.log('Error while logging ' + error);
+        setLoginState({
+          username: '',
+          password: ''
+        });
+      });
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -67,10 +97,11 @@ const Login = () => {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            type="text"
+            label="UserName"
+            name="username"
+            value={loginState.username}
             autoFocus
           />
           <TextField
@@ -82,7 +113,7 @@ const Login = () => {
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
+            value={loginState.password}
           />
           <Button
             type="submit"

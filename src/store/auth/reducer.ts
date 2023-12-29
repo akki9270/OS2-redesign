@@ -1,24 +1,24 @@
 import { AUTH_ACTIONS } from './actions';
 
-export interface AuthState {
-  isAuthenticated?: boolean;
+export interface AuthState {  
+  auth?: any;
 }
 
-const INITIAL_STATE: AuthState = {
-  isAuthenticated: false
+const INITIAL_STATE: AuthState = {  
+  auth: null,
 };
 
-export const authReducer = (state: AuthState = INITIAL_STATE, action: any) => {
+export const authReducer = (state: AuthState = INITIAL_STATE, action: any) => {  
   switch (action.type) {
     case AUTH_ACTIONS.LOGIN_USER: 
       return {
-        ...state,
-        isAuthenticated: true
-      };
+        ...state,        
+        auth: action.data
+      };    
     case AUTH_ACTIONS.LOGOUT_USER: 
       return {
         ...state,
-        isAuthenticated: INITIAL_STATE.isAuthenticated
+        ...INITIAL_STATE
       };
     default:
       return state;

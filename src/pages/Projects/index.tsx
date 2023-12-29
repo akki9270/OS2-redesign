@@ -1,18 +1,46 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import LinearProgress from '@mui/material/LinearProgress';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
+
 import SvgIcons from '../../components/SvgIcons';
+import NoDataFound from '../../components/NoDataFound';
+import ProjectGridList from './components/ProjectGridList';
+import ProjectList from './components/ProjectList';
+
+import { ProjectAPI } from '../../services/project';
+
+import { LOADER_ACTIONS } from '../../store/loader';
+
 import "./projects.scss";
 
 const Projects = () => {
+  const isShowLoader = useSelector((store: any) => store.loader.isShowLoader);
+  const dispatch = useDispatch();
+
   const [isGridView, setIsGridView] = useState(true);
   const [isListView, setIsLisView] = useState(false);
+  const [projects, setProjects] = useState<any>([]);
+
+  useEffect(() => {
+    getProjects();
+  }, []);
+
+  const getProjects = async (): Promise<void> => {
+    dispatch({ type: LOADER_ACTIONS.SHOW_LOADER });
+    try {
+      const projectsData = await ProjectAPI.getLatestProjects();
+      if (projectsData?.length > 0) {
+        setProjects(projectsData);
+      }
+      dispatch({ type: LOADER_ACTIONS.HIDE_LOADER });
+    } catch (error: any) {
+      dispatch({ type: LOADER_ACTIONS.HIDE_LOADER });
+    }
+  };
 
   const toggleView = (type) => {
     if (type === 'list') {
@@ -24,8 +52,9 @@ const Projects = () => {
     }
   };
 
+  if (projects?.length === 0 && !isShowLoader) return <NoDataFound />;
   return (
-    <div className='project-dashboard'>
+    (projects?.length > 0) && <div className='project-dashboard'>
       <div id='dashboard-header'>
         <div id='content-wrap'>
           {/* title */}
@@ -57,69 +86,29 @@ const Projects = () => {
           </span>
         </div>
       </div>
-      
+
       {isGridView && (
         // main grid container
         <Grid container className='grid-container'>
           {/* grid item */}
-          <Grid item xs={12} sm={6} md={3} lg={3} className='grid-item'>
-            <div>
-              {/*  */}
-              <span className='status'>In Progress</span>
-              <h3 className='project-name'>Shaft Infrastructure Design</h3>
-              <p className='risk-txt'>16 Risks Identified</p>
-              {/* progress bar */}
-              <Box className="progress-bar">
-                {/* First part */}
-                <LinearProgress className="progress-bar-item" variant="determinate" value={100} />
-
-                {/* Second part */}
-                <LinearProgress className="progress-bar-item" variant="determinate" value={0} />
-
-                {/* Third part */}
-                <LinearProgress className="progress-bar-item" variant="determinate" value={0} />
-              </Box>
-            </div>
-          </Grid>
+          {projects.map((projectData: any, index: any) => {
+            return <ProjectGridList key={`project-grid-${index}`} projectData={projectData} />
+          })}
           {/* grid item end */}
-          {/* main grid container end */}
         </Grid>
+        //main grid container end
       )}
 
       {isListView && (
         // list container start
         <List id='list-container'>
           {/* list item start */}
-          <ListItem>
-            <div className='list-content'>
-              {/*  */}
-              
-              <h3 className='project-name'>Shaft Infrastructure Design</h3>
-              <span className='status'>In Progress</span>
-              <div className='risk-wrap'>
-                <p className='risk-txt'>16 Risks Identified</p>
-                {/* progress bar */}
-                <Box className="progress-bar">
-                  {/* First part */}
-                  <LinearProgress className="progress-bar-item" variant="determinate" value={100} />
-
-                  {/* Second part */}
-                  <LinearProgress className="progress-bar-item" variant="determinate" value={0} />
-
-                  {/* Third part */}
-                  <LinearProgress className="progress-bar-item" variant="determinate" value={0} />
-                </Box>
-              </div>
-              <span className='view-contract'>
-                <SvgIcons iconType={'contract'} />
-                View Contracts
-              </span>
-            </div>
-          </ListItem>
+          {projects.map((projectData: any, index: any) => {
+            return <ProjectList key={`project-list-${index}`} projectData={projectData} />
+          })}
           {/* list item end */}
-
-          {/* list container end */}
         </List>
+        // list container end
       )}
 
       {/* bottom button & pagination */}

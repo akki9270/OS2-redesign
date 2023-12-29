@@ -6,7 +6,7 @@ export { RiskEventInput } from './riskEventInput';
 export { OwnerInput } from './ownerInput';
 export { Contract } from './contract';
 export { ContractItem } from './contractItem';
-export { ContractItemOutput } from './ContractItemOutput';
+export { ContractItemOutput } from './contractItemOutput';
 export { RiskEventItemOutput } from './riskEventItemOutput';
 export { ContractItemVariability } from './contractItemVariability';
 export { Variability } from './variability';

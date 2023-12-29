@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Topbar from './components/Topbar';
 import Sidebar from './components/Sidebar';
 import PrivateRoute from './components/PrivateRoute';
+
+import PageNotFound from './pages/PageNotFound';
 import Projects from './pages/Projects';
 import Contracts from './pages/Contracts';
 import RiskIdentification from './pages/RiskIdentification';
 import RiskAssessment from './pages/RiskAssessment';
 import Login from './pages/Login';
 
-const App = () => {
-  const isAuthenticated = useSelector((store: any) => store.auth.isAuthenticated);
+import AuthVerify from './common/AuthVerify';
+import { AUTH_ACTIONS } from './store/auth';
+
+const App: React.FC = () => {
+  const isAuthenticated = useSelector((store: any) => store.auth.auth?.value);
+  const dispatch = useDispatch();
+
+  const logOut = useCallback(() => {
+    if (isAuthenticated) {
+      dispatch({ type: AUTH_ACTIONS.LOGOUT_USER });
+    }
+  }, [dispatch]);
+
   return (
     <div>
       {isAuthenticated &&
@@ -21,11 +34,11 @@ const App = () => {
           <Sidebar />
         </React.Fragment>
       }
-      <Routes>        
+      <Routes>
         <Route path='/'
           element={isAuthenticated
             ? <Navigate to="/projects" replace />
-            : <Navigate to="/login" replace />} />        
+            : <Navigate to="/login" replace />} />
         <Route path="/projects" element={<PrivateRoute />}>
           <Route path="/projects" element={<Projects />} />
         </Route>
@@ -39,7 +52,9 @@ const App = () => {
           <Route path="/riskassessment" element={<RiskAssessment />} />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <AuthVerify logOut={logOut} />
     </div>
   );
 }

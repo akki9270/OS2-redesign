@@ -6,24 +6,29 @@ import * as ReactDOMClient from 'react-dom/client';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material';
+import { ToastContainer } from 'react-toastify';
 
 import { theme } from './theme';
 import { store, persistor } from '../src/store/ConfigureStore';
-import App from './App';
 
+import App from './App';
+import Loader from './components/Loader';
+
+import 'react-toastify/dist/ReactToastify.css';
 import './scss/main.scss';
 
 // const mountNode = document.getElementById('root');
 const root = ReactDOMClient.createRoot(document.getElementById('root')!);
 
 root.render(
-  <React.StrictMode>
+  <React.Fragment>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
+            <Loader />
             <Routes>
               <Route path="/*" element={<App />} />
             </Routes>  
@@ -31,5 +36,6 @@ root.render(
         </Provider>
       </ThemeProvider>
     </BrowserRouter>
-  </React.StrictMode>
+    <ToastContainer newestOnTop />
+  </React.Fragment>
 );

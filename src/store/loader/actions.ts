@@ -1,0 +1,5 @@
+export enum LOADER_ACTIONS {
+    SHOW_LOADER = "SHOW_LOADER",
+    HIDE_LOADER = "HIDE_LOADER",
+  };
+  
